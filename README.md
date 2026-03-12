@@ -180,7 +180,7 @@ See `schema/templates.json` for ready-to-use JSON-LD snippets.
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.10+
 - Claude Code CLI
 - Optional: Playwright for screenshots
 
@@ -198,12 +198,14 @@ Integrates with MCP servers for live SEO data — including official servers fro
 
 Optional add-ons that integrate external data sources via MCP servers.
 
-### DataForSEO
+### DataForSEO (Paid API — Not Open Source)
 
 Live SERP data, keyword research, backlinks, on-page analysis, content analysis, business listings, AI visibility checking, and LLM mention tracking. 22 commands across 9 API modules.
 
+> **Note:** DataForSEO is a commercial company with a pay-as-you-go API. The MCP connector (`dataforseo-mcp-server`) is open source, but the underlying API requires a paid account (minimum $50 top-up, $1 free trial credit for new accounts). Claude SEO works fully without it — this extension adds live data capabilities.
+
 ```bash
-# Install (requires DataForSEO account)
+# Install (requires DataForSEO account — https://app.dataforseo.com/register)
 ./extensions/dataforseo/install.sh
 ```
 
@@ -218,6 +220,23 @@ Live SERP data, keyword research, backlinks, on-page analysis, content analysis,
 
 See [DataForSEO Extension](extensions/dataforseo/README.md) for full documentation.
 
+## Project Audit Summary
+
+Full audit performed on 2026-03-12. See [complete report](docs/AUDIT-REPORT.md).
+
+| Category | Rating | Key Findings |
+|----------|--------|-------------|
+| **Architecture** | Excellent | 96 files, 3-layer design, 13 sub-skills, 6 parallel agents |
+| **Security** | Excellent | SSRF prevention, path traversal protection, no hardcoded secrets, all CVEs patched |
+| **Code Quality** | Excellent | PEP 8, docstrings, error handling, CLI interfaces |
+| **SEO Knowledge** | Excellent | Current with Dec 2025 core update, INP, E-E-A-T QRG Sept 2025, Schema.org v29.4 |
+| **Documentation** | Excellent | 5 docs, 4 references, complete coverage |
+| **Tests** | Missing | No automated tests yet — planned improvement |
+
+**Strengths:** Security-first design, modular architecture, up-to-date SEO standards, cross-platform support, graceful fallbacks.
+
+**Areas to improve:** Add automated tests, CI/CD pipeline, split oversized reference file, tighten agent Bash scope.
+
 ## Documentation
 
 - [Installation Guide](docs/INSTALLATION.md)
@@ -225,6 +244,7 @@ See [DataForSEO Extension](extensions/dataforseo/README.md) for full documentati
 - [Architecture](docs/ARCHITECTURE.md)
 - [MCP Integration](docs/MCP-INTEGRATION.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [Audit Report](docs/AUDIT-REPORT.md)
 
 ## License
 
